@@ -9,15 +9,13 @@ one_to_hundred.each do |number|
   #公倍数を先に処理しifから抜ける
   mult_x = 3
   mult_y = 5
-  if number % (mult_x * mult_y) < 1
+  if number % (mult_x * mult_y) == 0
     puts "fizzbuzz" 
-    next
-  elsif number % mult_x < 1
+  elsif number % mult_x == 0
     puts "fizz"
-    next
-  elsif number % mult_y < 1
+  elsif number % mult_y == 0
     puts "buzz"
-    next
+  else 
+    puts number
   end
-  puts number
 end
