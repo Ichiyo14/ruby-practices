@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 require "date"
 require "optparse"
-def calendar_expression(year: Date.today.year, month: Date.today.month)
+def calendar_expression(year:, month:)
   puts "       #{month}月 #{year}"
   puts "日 月 火 水 木 金 土"
   #今月の最初の日と最後の日を求めて、最初の日から最後の日まで順番に表示しよう。
@@ -42,17 +42,16 @@ def calendar_expression(year: Date.today.year, month: Date.today.month)
   end
 end
 
+#今日の年月を変数へ入れておく。
+year = Date.today.year
+month = Date.today.month
+
 opt =ARGV.getopts("y:", "m:")
-if !opt["y"] && !opt["m"]#optionの設定がない時
-  calendar_expression
-elsif !opt["m"] && (opt["y"] != "") #yのみ設定がある時
+if opt["y"]#yの設定時に変数yearを更新
   year = opt["y"].to_i
-  calendar_expression(year:year)
-elsif !opt["y"] && (opt["m"] != "") #mのみ設定がある時
-  month = opt["m"].to_i
-  calendar_expression(month:month)
-else (opt["y"] != "")&& (opt["m"] != "")#ym両方の設定がある時
-  year = opt["y"].to_i
-  month =  opt["m"].to_i
-  calendar_expression(year:year,month:month)
 end
+if opt["m"]
+  month = opt["m"].to_i
+end
+
+calendar_expression(year: year, month: month)
