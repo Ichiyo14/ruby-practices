@@ -13,6 +13,10 @@ def main
                 end
   current_dir.reverse! if opt['r']
   if opt['l']
+    print 'total'
+    total_number = 0
+    current_dir.each { |file_name| total_number += File.stat(file_name).blocks }
+    puts " #{total_number}"
     l_command(current_dir)
   else
     three_rows_order(current_dir)
