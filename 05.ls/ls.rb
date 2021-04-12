@@ -14,8 +14,7 @@ def main
   current_dir.reverse! if opt['r']
   if opt['l']
     print 'total'
-    total_number = 0
-    current_dir.each { |file_name| total_number += File.stat(file_name).blocks }
+    total_number = current_dir.sum { |file_name| File.stat(file_name).blocks }
     puts " #{total_number}"
     l_command(current_dir)
   else
@@ -45,11 +44,11 @@ def three_rows_order(files)
   files << ' ' until (files.size % 3).zero?
   slice_files = files.each_slice(files.size / 3).to_a
   slice_files.each do |column_files|
-    zenkaku_doble_count = proc { |chars| chars.length + chars.chars.count - chars.chars.count(&:ascii_only?) }
-    @max_long_name_file = column_files.max_by { |file| zenkaku_doble_count.call(file) }
-    @max_long_name_file_length = zenkaku_doble_count.call(@max_long_name_file)
+    zenkaku_double_count = proc { |chars| chars.length + chars.chars.count - chars.chars.count(&:ascii_only?) }
+    @max_long_name_file = column_files.max_by { |file| zenkaku_double_count.call(file) }
+    @max_long_name_file_length = zenkaku_double_count.call(@max_long_name_file)
     column_files.map! do |file|
-      file + ' ' * (@max_long_name_file_length - zenkaku_doble_count.call(file) + 1)
+      file + ' ' * (@max_long_name_file_length - zenkaku_double_count.call(file) + 1)
     end
   end
   slice_files.transpose.each do |three_set_files|
