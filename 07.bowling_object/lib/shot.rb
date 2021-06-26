@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class Shot
-  def initialize(number_or_x)
-    @score = number_or_x
+  def initialize(mark)
+    @mark = mark
   end
 
   def score
-    if @score == 'X'
-      @score = 10
+    if @mark == 'X'
+      10
+    elsif @mark.nil?
+      nil
     else
-      @score.to_i
+      @mark.to_i
     end
   end
 end
