@@ -35,9 +35,7 @@ class Game
   end
 
   def to_frame_objects(frames)
-    frames.map do |frame|
-      Frame.new(frame[0], frame[1], frame[2])
-    end
+    frames.map { |frame| Frame.new(*frame) }
   end
 
   def total_scores_before_addition
