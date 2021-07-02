@@ -16,7 +16,7 @@ class Game
     frames = []
     shots = []
     split_marks.each.with_index do |mark, shot_i|
-      if frames.size == 9 # 10フレームの時
+      if Frame.one_before_last_frame?(frames.size)
         shots << mark # 最後のショットの時
         frames << shots if shot_i == split_marks.size - 1
         next
@@ -25,7 +25,7 @@ class Game
         frames << ['X']
       else
         shots << mark
-        if shots.length == 2 # 2回投げたら1フレームだよ
+        if Frame.enough_shots?(shots.length)
           frames << shots
           shots = []
         end
