@@ -11,21 +11,16 @@ require './lib/longformatfiles'
 require './lib/longfile'
 require './lib/shortformatfiles'
 
-
 opt = ARGV.getopts('a', 'l', 'r')
 path = ARGV[0] || '.'
 pathname = Pathname(path)
 
 files = Option.new(pathname)
 
-if opt['a']
- files.a_option
-end
-if opt['r']
-  files.r_option
-end
+files.a_option if opt['a']
+files.r_option if opt['r']
 if opt['l']
-  puts files.l_option
+  files.l_option
 else
   files.no_option
 end
