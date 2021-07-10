@@ -4,7 +4,6 @@ class Option
   attr_reader :pathname
 
   def initialize(pathname)
-    @option = ARGV.getopts('a', 'l', 'r')
     @files = Dir.glob((pathname).join('*')).sort
     @pathname = pathname
   end
