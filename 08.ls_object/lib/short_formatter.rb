@@ -3,26 +3,26 @@
 require 'pathname'
 require 'etc'
 
+MAXIMUM_NUMBER_OF_COLUMNS = 5
 class ShortFormatter
-  attr_reader :files, :three_rows_files
 
   def initialize(file_paths)
     @files = ShortFormatFiles.new(file_paths).build_name_array
-    @three_rows_files = three_rows_order(files)
+    @rows_files = rows_order(@files)
   end
 
   def format
-    three_rows_files.map do |three_set_files|
-      three_set_files.each { |file| print file }
+    @rows_files.map do |set_files|
+      set_files.each { |file| print file }
       print "\n"
     end
   end
 
   private
 
-  def three_rows_order(array)
-    array << '' until ShortFormatFiles.multiples_of_three?(array)
-    slice_files = array.each_slice(array.size / 3).to_a
+  def rows_order(array)
+    array << nil until ShortFormatFiles.multiples_of_number?(array, MAXIMUM_NUMBER_OF_COLUMNS)
+    slice_files = array.each_slice(array.size / MAXIMUM_NUMBER_OF_COLUMNS).to_a
     slice_files.transpose
   end
 end
