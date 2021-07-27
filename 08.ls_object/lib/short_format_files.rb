@@ -15,7 +15,7 @@ class ShortFormatFiles
 
   def build_name_array
     @file_paths.map do |file_path|
-      File.basename(file_path).ljust(13).to_s
+      File.basename(file_path).ljust(13)
     end
   end
 end
