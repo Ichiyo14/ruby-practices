@@ -1,26 +1,24 @@
 # frozen_string_literal: true
 
-class Option
+class Command
   attr_reader :pathname
 
-  def initialize(pathname)
+  def initialize(pathname, all: false, reverse: false)
     @files = Dir.glob((pathname).join('*')).sort
+    @files = Dir.glob((pathname).join('*'), File::FNM_DOTMATCH).sort if all
+    @files.reverse! if reverse
     @pathname = pathname
   end
 
-  def a_option
-    @files = Dir.glob((pathname).join('*'), File::FNM_DOTMATCH).sort
+  def target_files
+   Dir.glob((@pathname).join('*')).sort
   end
 
-  def r_option
-    @files.reverse!
-  end
-
-  def l_option
+  def print_l_option
     LongFormatter.new(@files).format
   end
 
-  def no_option
+  def print_no_option
     ShortFormatter.new(@files).format
   end
 end

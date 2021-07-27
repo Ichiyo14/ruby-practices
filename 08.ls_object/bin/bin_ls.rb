@@ -16,12 +16,10 @@ opt = ARGV.getopts('a', 'l', 'r')
 path = ARGV[0] || '.'
 pathname = Pathname(path)
 
-files = Option.new(pathname)
+command = Command.new(pathname, all: opt['a'], reverse: opt['r'])
 
-files.a_option if opt['a']
-files.r_option if opt['r']
 if opt['l']
-  files.l_option
+  command.print_l_option
 else
-  files.no_option
+  command.print_no_option
 end
