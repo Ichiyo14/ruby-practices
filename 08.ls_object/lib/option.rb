@@ -15,10 +15,10 @@ class Command
   end
 
   def print_l_option
-    LongFormatter.new(@files).format
+    LongFormatter.new(@files).output
   end
 
   def print_no_option
-    ShortFormatter.new(@files).format
+    ShortFormatter.new(@files).output
   end
 end

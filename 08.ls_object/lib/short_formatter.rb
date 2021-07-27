@@ -11,7 +11,7 @@ class ShortFormatter
     @rows_files = rows_order(@files)
   end
 
-  def format
+  def output
     @rows_files.map do |set_files|
       set_files.each { |file| print file }
       print "\n"
