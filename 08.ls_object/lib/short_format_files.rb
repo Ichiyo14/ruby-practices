@@ -3,17 +3,18 @@
 require 'pathname'
 
 class ShortFormatFiles
+  attr_reader :basenames
 
   def initialize(file_paths)
     @file_paths = file_paths
-    @files = build_name_array
+    @basenames = basenames
   end
 
   def self.multiples_of_number?(files, number_of_collumns)
     (files.size % number_of_collumns).zero?
   end
 
-  def build_name_array
+  def basenames
     @file_paths.map do |file_path|
       File.basename(file_path).ljust(13)
     end
