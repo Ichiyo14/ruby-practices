@@ -3,8 +3,6 @@
 require 'pathname'
 
 class ShortFormatFiles
-  attr_reader :basenames
-
   def initialize(file_paths)
     @file_paths = file_paths
     @basenames = basenames

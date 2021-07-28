@@ -5,7 +5,6 @@ require 'etc'
 
 MAXIMUM_NUMBER_OF_COLUMNS = 5
 class ShortFormatter
-
   def initialize(file_paths)
     short_format_files = ShortFormatFiles.new(file_paths)
     @rows_files = transpose(short_format_files.basenames)

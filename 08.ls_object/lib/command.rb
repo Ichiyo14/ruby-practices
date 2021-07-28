@@ -11,7 +11,7 @@ class Command
   end
 
   def target_files
-   Dir.glob((@pathname).join('*')).sort
+    Dir.glob((@pathname).join('*')).sort
   end
 
   def print_l_option
