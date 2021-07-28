@@ -5,12 +5,12 @@ require 'io/console'
 require 'optparse'
 require 'pathname'
 
-require './lib/long_formatter'
-require './lib/short_formatter'
-require './lib/option'
-require './lib/long_format_files'
-require './lib/long_file'
-require './lib/short_format_files'
+require_relative '../lib/long_formatter'
+require_relative '../lib/short_formatter'
+require_relative '../lib/command'
+require_relative '../lib/long_format_files'
+require_relative '../lib/long_file'
+require_relative '../lib/short_format_files'
 
 opt = ARGV.getopts('a', 'l', 'r')
 path = ARGV[0] || '.'
