@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Command
-  attr_reader :pathname
-
   def initialize(pathname, all: false, reverse: false)
     @files = Dir.glob((pathname).join('*')).sort
     @files = Dir.glob((pathname).join('*'), File::FNM_DOTMATCH).sort if all
